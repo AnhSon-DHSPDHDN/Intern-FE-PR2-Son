@@ -1,0 +1,9 @@
+{
+  "navigation": {
+    "home": "Home",
+    "shop": "Shop",
+    "products": "Products",
+    "blogs": "Blogs",
+    "contacts": "Contacts"
+  }
+}
