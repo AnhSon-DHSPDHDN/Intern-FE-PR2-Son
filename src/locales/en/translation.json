@@ -5,5 +5,10 @@
     "products": "Products",
     "blogs": "Blogs",
     "contacts": "Contacts"
+  },
+  "header": {
+    "call": "Call",
+    "signin": "SignIn",
+    "register": "Register"
   }
 }

@@ -43,6 +43,10 @@ a {
 	align-items: center !important;
 }
 
+.container {
+	padding: 0 10%;
+}
+
 @for $i from 1 to 9 {
 	.fw-#{$i} {
 		font-weight: #{$i * 100} !important;
