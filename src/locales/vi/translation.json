@@ -5,5 +5,10 @@
     "products": "Sản Phẩm",
     "blogs": "Blogs",
     "contacts": "Liên Hệ"
+  },
+  "header": {
+    "call": "Gọi ngay",
+    "signin": "Đăng nhập",
+    "register": "Đăng ký"
   }
 }

@@ -1,0 +1,162 @@
+@import '../../styles/var';
+@import '../../styles/reponsive';
+
+#header {
+	border-bottom: 1px solid $bg-header-color;
+	.header-wrap {
+		background-color: $bg-header;
+		color: $bg-header-color;
+		.header__top {
+			display: flex;
+			justify-content: space-between;
+			.right {
+				&__img {
+					cursor: pointer;
+					height: 20px;
+					width: 30px;
+				}
+			}
+		}
+
+		.ant-divider {
+			border-top: 1px solid $bg-header-color;
+		}
+
+		.header__main {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&-input {
+				position: relative;
+				.icon-search {
+					font-size: 20px;
+					left: 15px;
+					position: absolute;
+					top: 12px;
+					transform: rotate(75deg);
+				}
+				input {
+					color: $color-black;
+					border-radius: 25px;
+					border: none;
+					min-width: 400px;
+					padding: 10px 0px 10px 50px;
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+
+			&-btns {
+				display: flex;
+				.btn-icon {
+					position: relative;
+					font-size: 30px;
+					&__notifi {
+						background-color: $color-orange;
+						border-radius: 50%;
+						color: $color-black;
+						font-size: 12px;
+						min-width: 17px;
+						position: absolute;
+						right: -5px;
+						top: 0;
+						text-align: center;
+					}
+					&__name {
+						bottom: -15px;
+						left: 0;
+						right: 50%;
+						font-size: 13px;
+						position: absolute;
+					}
+				}
+			}
+		}
+	}
+
+	.navigation-bar {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		.menu {
+			align-items: center;
+			display: flex;
+			list-style: none;
+			font-weight: 500;
+			font-size: 15px;
+			justify-content: space-between;
+			margin: 0;
+			width: 480px;
+			padding: 1em 0;
+			a {
+				&:hover {
+					color: $color-orange;
+				}
+			}
+			.active {
+				color: $color-orange;
+			}
+		}
+
+		.nav-toggle {
+			display: none;
+		}
+	}
+}
+
+@include Responsive(SM) {
+	#header {
+		.header-wrap {
+			.header__main {
+				&-input {
+					input {
+						display: none;
+					}
+				}
+				.icon-search {
+					display: none;
+				}
+			}
+		}
+
+		.navigation-bar {
+			display: block;
+			.menu {
+				display: none;
+			}
+			.nav-toggle {
+				border: none;
+				cursor: pointer;
+				display: block;
+				font-size: 18px;
+				padding: 0.5em 0;
+				width: 50px;
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	.menu-toggle {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			a {
+				display: block;
+				font-size: 15px;
+				padding: 10px 10px;
+				&:hover {
+					color: $color-orange;
+					background-color: $bg-header-color;
+				}
+			}
+			.active {
+				color: $color-orange;
+				background-color: $bg-header-color;
+			}
+		}
+	}
+}
