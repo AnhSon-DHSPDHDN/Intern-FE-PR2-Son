@@ -1,0 +1,72 @@
+@mixin carouselSlide {
+	background-repeat: no-repeat;
+	height: 400px;
+	padding: 40px 0px 0px 80px;
+	.daily {
+		color: $color-orange;
+		font-size: 20px;
+		margin: 0;
+	}
+	.name {
+		margin: -15px 0;
+		font-size: 60px;
+		font-weight: 700;
+		padding: 0;
+	}
+	.price-deals {
+		position: relative;
+		display: flex;
+		&__today {
+			font-size: 20px;
+		}
+		&__price {
+			color: $color-orange;
+			font-size: 60px;
+			font-weight: 700;
+			margin-left: 10px;
+		}
+	}
+	.link {
+		color: $color-white;
+		background-color: $color-orange;
+		border-radius: 20px;
+		display: block;
+		font-weight: 500;
+		padding: 10px 0;
+		width: 170px;
+		text-align: center;
+		transition: all 0.3s;
+		&:hover {
+			background-color: $color-orange-dark;
+		}
+	}
+}
+
+@mixin bannerHome {
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 10px 20px;
+	height: 120px;
+	.title {
+		margin: 0;
+		transition: all 0.3s;
+		&:hover {
+			color: $color-orange;
+		}
+	}
+	.name {
+		font-size: 17px;
+		margin: 0;
+		transition: all 0.3s;
+		&:hover {
+			color: $color-orange;
+		}
+	}
+	.link {
+		transition: all 0.3s;
+		font-weight: 600;
+		&:hover {
+			color: $color-orange;
+		}
+	}
+}

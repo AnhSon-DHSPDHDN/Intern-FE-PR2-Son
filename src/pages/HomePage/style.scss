@@ -1,0 +1,226 @@
+@import '../../styles/var';
+@import '../../styles/mixin';
+@import '../../styles/reponsive';
+
+#home-page {
+	.banner {
+		&__carousel {
+			.carousel-1 {
+				background-image: url('../../assets/imgs/slide-1.jpg');
+				@include carouselSlide;
+			}
+			.carousel-2 {
+				background-image: url('../../assets/imgs/slide-2.jpg');
+				@include carouselSlide;
+			}
+		}
+
+		&__1 {
+			background-image: url('../../assets/imgs/banner-1.jpg');
+			@include bannerHome;
+		}
+		&__2 {
+			background-image: url('../../assets/imgs/banner-2.jpg');
+			@include bannerHome;
+		}
+		&__3 {
+			background-image: url('../../assets/imgs/banner-3.jpg');
+			@include bannerHome;
+		}
+	}
+
+	.selling-product {
+		.btn-prev {
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+			left: -30px;
+			position: absolute;
+			top: 200px;
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				color: $color-orange;
+			}
+		}
+		.btn-next {
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+			right: -30px;
+			position: absolute;
+			top: 200px;
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				color: $color-orange;
+			}
+		}
+	}
+
+	.banner-1 {
+		&__bg-img {
+			background-image: url('../../assets/imgs/bg-1.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 160px;
+			padding: 10px;
+			.contents {
+				background-color: $color-white;
+				display: flex;
+				justify-content: space-around;
+				height: 140px;
+				padding: 40px 0;
+				&__left {
+					font-size: 20px;
+					.new-deal {
+						color: $color-orange;
+						margin: 0;
+					}
+				}
+				&__center {
+					font-size: 16px;
+				}
+				.btn-add {
+					border: none;
+					border-radius: 30px;
+					background-color: $color-orange;
+					cursor: pointer;
+					color: $color-white;
+					font-weight: 600;
+					width: 200px;
+					&:hover {
+						background-color: $color-orange-dark;
+					}
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+		}
+	}
+
+	.banner-2 {
+		background-color: $color-bg-banner;
+		padding-top: 50px;
+		padding-bottom: 50px;
+		.deal-of-day {
+			background-image: url('../../assets/imgs/deal-of-day.jpg');
+			height: 100%;
+			.content {
+				.title {
+					color: $color-red;
+				}
+			}
+		}
+	}
+
+	.partner {
+		.img-brand {
+			height: 50px;
+			text-align: center;
+		}
+	}
+
+	.banner-3 {
+		&__bg {
+			background-image: url('../../assets/imgs/bg-2.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 300px;
+			padding: 10px;
+			.content {
+				align-items: center;
+				background-color: $color-white;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				height: 280px;
+				text-align: center;
+				&__title {
+					font-size: 30px;
+					font-weight: 600;
+				}
+				&__des {
+					font-size: 15px;
+				}
+				&__social {
+					display: flex;
+					margin: 10px;
+					.social-item {
+						border-radius: 50%;
+						box-sizing: border-box;
+						color: $color-white;
+						cursor: pointer;
+						font-size: 17px;
+						line-height: 38px;
+						height: 40px;
+						margin: 0 5px;
+						width: 40px;
+					}
+					.fb {
+						background-color: $color-fb;
+						border: 1px solid $color-fb;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-fb;
+						}
+					}
+					.skype {
+						background-color: $color-skype;
+						border: 1px solid $color-skype;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-skype;
+						}
+					}
+					.inta {
+						background-color: $color-inta;
+						border: 1px solid $color-inta;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-inta;
+						}
+					}
+					.youtube {
+						background-color: $color-youtube;
+						border: 1px solid $color-youtube;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-youtube;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@include Responsive(MD) {
+	#home-page {
+		.banner-1 {
+			&__bg-img {
+				height: 300px;
+				.contents {
+					height: 280px;
+					align-items: center;
+					flex-direction: column;
+					text-align: center;
+					.btn-add {
+						height: 50px;
+					}
+				}
+			}
+		}
+	}
+}

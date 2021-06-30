@@ -7,19 +7,20 @@ import {
 	ShoppingCartOutlined,
 	UnorderedListOutlined,
 } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { Divider, Drawer } from 'antd';
 
 import './style.scss';
 import VN from 'assets/imgs/vietnam.png';
 import EN from 'assets/imgs/us.jpg';
-import { Divider, Drawer } from 'antd';
 import Logo from 'assets/imgs/logo.png';
 
 const navigationBar = [
-	{ name: 'navigation.home' },
-	{ name: 'navigation.shop' },
-	{ name: 'navigation.products' },
-	{ name: 'navigation.blogs' },
-	{ name: 'navigation.contacts' },
+	{ name: 'navigation.home', path: '/' },
+	{ name: 'navigation.shop', path: '/shop' },
+	{ name: 'navigation.products', path: '/products' },
+	{ name: 'navigation.blogs', path: '/blogs' },
+	{ name: 'navigation.contacts', path: '/contacts' },
 ];
 
 function Header() {
@@ -37,7 +38,7 @@ function Header() {
 		return data.map((nav, index) => {
 			return (
 				<li key={index}>
-					<a href='/'>{t(nav.name)}</a>
+					<Link to={nav.path}>{t(nav.name)}</Link>
 				</li>
 			);
 		});
@@ -78,7 +79,7 @@ function Header() {
 					<div className='header__main-input'>
 						<input
 							className='input-search'
-							placeholder='Search product ...'
+							placeholder={t('header.placeholder')}
 							name='search-product'
 						></input>
 						<SearchOutlined className='icon-search' />
@@ -87,12 +88,12 @@ function Header() {
 						<span className='btn-wishlist btn-icon mr-8'>
 							<HeartOutlined />
 							<div className='btn-icon__notifi'>1</div>
-							<div className='btn-icon__name'>Wishlist</div>
+							<div className='btn-icon__name'>{t('header.wishList')}</div>
 						</span>
 						<span className='btn-wishlist btn-icon'>
 							<ShoppingCartOutlined />
 							<div className='btn-icon__notifi'>1</div>
-							<div className='btn-icon__name'>Cart</div>
+							<div className='btn-icon__name'>{t('header.cart')}</div>
 						</span>
 					</div>
 				</div>

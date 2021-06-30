@@ -9,6 +9,42 @@
   "header": {
     "call": "Call",
     "signin": "SignIn",
-    "register": "Register"
+    "register": "Register",
+    "placeholder": "Search products ...",
+    "wishList": "Wishlist",
+    "cart": "Cart"
+  },
+  "homePage": {
+    "daily": "Daily Deals",
+    "clickHere": "Click Here",
+    "today": "Today: ",
+    "topProduct": "Top Products",
+    "clearance": "Clearance",
+    "featured": "Featured",
+    "productSale": "Products Sale",
+    "review": "Reviews",
+    "newDeals": "New Deals",
+    "newDealsTime": "Start Daily at 12pm e.t.",
+    "addToCart": "Add to Cart for $50",
+    "dealOutlet": "Deals & Outlet",
+    "dealOfTheDay": "Deals of the Day.",
+    "limitedQuantity": "Limited quantities.",
+    "productNew": "New Products",
+    "service": {
+      "shipping": "Free Shipping",
+      "shippingDetail": "orders $50 or more",
+      "return": "Free Returns",
+      "returnDetail": "within 30 days",
+      "free20": " Get 20% Off 1 Item",
+      "free20Detail": "When you sign up",
+      "support": "We Support",
+      "supportDetail": "24/7 amazing services"
+    },
+    "shopSocial": "Shop Social"
+  },
+  "product": {
+    "sale": "Sale",
+    "hot": "Hot",
+    "new": "New"
   }
 }

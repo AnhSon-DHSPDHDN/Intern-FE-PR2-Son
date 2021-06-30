@@ -1,0 +1,120 @@
+@import '../../styles/var';
+
+#card-product {
+	height: 420px;
+	.ant-card-body {
+		padding: 0;
+		position: relative;
+		.product-tags {
+			display: flex;
+			flex-direction: column;
+			font-weight: 500;
+			left: 10px;
+			top: 20px;
+			position: absolute;
+			.tag-item {
+				color: $color-white;
+				border-radius: 50%;
+				line-height: 40px;
+				height: 40px;
+				margin-top: -10px;
+				width: 40px;
+				text-align: center;
+			}
+			.bg-red {
+				background-color: $color-red;
+			}
+			.bg-yellow {
+				background-color: $color-orange-dark;
+			}
+			.bg-green {
+				background-color: $color-green;
+			}
+		}
+
+		.card-actions {
+			background-color: $bg-header;
+			color: $color-white;
+			display: flex;
+			justify-content: space-between;
+			height: 0px;
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom: 127px;
+			transition: all 0.3s;
+			&::before {
+				content: '';
+				background-color: $color-white;
+				width: 2px;
+				left: calc(50% - 1px);
+				height: 0px;
+				position: absolute;
+				top: 5px;
+				transition: all 0.3s;
+			}
+			.btn-action {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+				visibility: hidden;
+				width: 100%;
+				&:focus {
+					outline: none;
+				}
+				&:hover {
+					color: $color-orange;
+				}
+			}
+		}
+
+		.card-img {
+			height: 280px;
+			object-fit: cover;
+			width: 100%;
+		}
+		.card-info {
+			padding: 10px;
+			.product-name {
+				display: -webkit-box;
+				height: 50px;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				transition: all 0.3s;
+				&:hover {
+					color: $color-orange;
+				}
+			}
+
+			.product-price {
+				font-size: 17px;
+				.old-price {
+					font-size: 14px;
+					text-decoration: line-through;
+				}
+				.new-price {
+					color: $color-orange;
+					font-weight: 600;
+				}
+			}
+
+			.is-rating {
+				color: $color-orange;
+			}
+		}
+	}
+
+	&:hover {
+		.ant-card-body .card-actions {
+			height: 40px;
+			&::before {
+				height: 30px;
+			}
+			.btn-action {
+				visibility: inherit;
+			}
+		}
+	}
+}
