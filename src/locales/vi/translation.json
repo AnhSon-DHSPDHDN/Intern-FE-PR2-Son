@@ -9,6 +9,42 @@
   "header": {
     "call": "Gọi ngay",
     "signin": "Đăng nhập",
-    "register": "Đăng ký"
+    "register": "Đăng ký",
+    "placeholder": "Nhập tên sản phẩm ...",
+    "wishList": "Yêu thích",
+    "cart": "Giỏ hàng"
+  },
+  "homePage": {
+    "daily": "Ưu Đãi Hàng Ngày",
+    "clickHere": "Xem Ngay",
+    "today": "Hôm nay: ",
+    "topProduct": "Sản phẩm hàng đầu",
+    "clearance": "Hạ giá",
+    "featured": "Đặc biệt",
+    "productSale": "Sản phẩm khuyến mãi",
+    "review": "Đánh giá",
+    "newDeals": "Ưu đãi mới",
+    "newDealsTime": "Bắt đầu từ 12h pm hằng ngày",
+    "addToCart": "Thêm vào giỏ hàng",
+    "dealOutlet": "Ưu đãi từ cửa hàng",
+    "dealOfTheDay": "Ưu đãi hôm nay.",
+    "limitedQuantity": "Số lượng có hạn.",
+    "productNew": "Sản phẩm mới",
+    "service": {
+      "shipping": "Miễn phí giao hàng",
+      "shippingDetail": "Cho đơn hàng lớn hơn 50$",
+      "return": "Miễn phí đổi trả",
+      "returnDetail": "Trong vòng 30 ngày",
+      "free20": "Miễn phí 20%",
+      "free20Detail": "Khi bạn đăng nhập",
+      "support": "Hỗ trợ",
+      "supportDetail": "Hỗ trợ 24/7"
+    },
+    "shopSocial": "Mua sắm trên mạng xã hội "
+  },
+  "product": {
+    "sale": "KM",
+    "hot": "Hot",
+    "new": "Mới"
   }
 }
