@@ -1,0 +1,88 @@
+@import '../../styles/var';
+
+#products-page {
+	.container {
+		.clear-container {
+			display: flex;
+			justify-content: space-between;
+			.title {
+				font-size: 17px;
+			}
+			.clear-btn {
+				border: 1px solid $bg-header-color;
+				background-color: transparent;
+				cursor: pointer;
+				color: $color-orange;
+				font-weight: 700;
+				&:hover {
+					background-color: $bg-header-color;
+				}
+			}
+		}
+
+		.collapse {
+			.panel-header {
+				font-size: 20px;
+				margin-bottom: 0;
+				.list-category {
+					font-size: 15px;
+					list-style: none;
+					padding-top: 0;
+					padding-bottom: 0;
+					&__item {
+						cursor: pointer;
+						transition: all 0.3s;
+						&:hover {
+							color: $color-orange;
+						}
+					}
+					.active {
+						color: $color-orange;
+					}
+				}
+			}
+
+			.panel-price {
+				.ant-collapse-content-box {
+					padding-left: 0;
+				}
+				.filter-price {
+					display: flex;
+					font-size: 13px;
+					justify-content: space-between;
+					strong {
+						color: $color-orange;
+					}
+					.submit-price {
+						border: 1px solid $bg-header-color;
+						background-color: transparent;
+						cursor: pointer;
+						transition: all 0.3s;
+						&:hover {
+							background-color: $color-orange;
+							color: $color-white;
+						}
+					}
+				}
+			}
+
+			.break-line {
+				border-top: 1px solid $bg-header-color;
+				border-bottom: none;
+			}
+		}
+	}
+
+	.ant-collapse-icon-position-right
+		> .ant-collapse-item
+		> .ant-collapse-header {
+		padding-left: 0;
+	}
+	.ant-collapse-ghost
+		> .ant-collapse-item
+		> .ant-collapse-content
+		> .ant-collapse-content-box {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
