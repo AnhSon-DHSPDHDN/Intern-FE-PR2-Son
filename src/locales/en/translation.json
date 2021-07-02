@@ -46,5 +46,36 @@
     "sale": "Sale",
     "hot": "Hot",
     "new": "New"
+  },
+  "productPage": {
+    "filter": "Filters:",
+    "clearAll": "Clean All",
+    "sortBy": "Sort By:",
+    "default": "Default",
+    "asc": "Ascending",
+    "desc": "Decrease",
+    "category": "Category",
+    "categories": {
+      "furniture": "Furniture",
+      "coffeeTable": "Coffee & Tables",
+      "lighting": "Lighting",
+      "decoration": "Decoration",
+      "electronics": "Electronics",
+      "beds": "Beds",
+      "armchairs": "Armchairs & Chaises",
+      "sofas": "Sofas & Sleeper Sofas"
+    },
+    "tags": "Tags",
+    "all": "All",
+    "brand": "Brand",
+    "brands": {
+      "nike": "Nike",
+      "samsung": "SamSung",
+      "apple": "Apple",
+      "coolmate": "Cool Mate"
+    },
+    "price": "Price",
+    "priceRange": "Price Range: ",
+    "goFilter": "Filter"
   }
 }

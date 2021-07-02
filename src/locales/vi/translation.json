@@ -46,5 +46,36 @@
     "sale": "KM",
     "hot": "Hot",
     "new": "Mới"
+  },
+  "productPage": {
+    "filter": "Bộ lọc:",
+    "clearAll": "Làm mới",
+    "sortBy": "Sắp xếp theo:",
+    "default": "Mặc định",
+    "asc": "Tăng dần",
+    "desc": "Giảm dần",
+    "category": "Danh mục",
+    "categories": {
+      "furniture": "Đồ gia dụng",
+      "coffeeTable": "Bàn cà phê",
+      "lighting": "Đèn trang trí",
+      "decoration": "Đồ trang trí",
+      "electronics": "Đồ điện tử",
+      "beds": "Giường",
+      "armchairs": "Ghế bành",
+      "sofas": "Ghế sofas"
+    },
+    "tags": "Thẻ",
+    "all": "Tất cả",
+    "brand": "Hãng sản xuất",
+    "brands": {
+      "nike": "Nike",
+      "samsung": "SamSung",
+      "apple": "Apple",
+      "coolmate": "Cool Mate"
+    },
+    "price": "Giá",
+    "priceRange": "Phạm vi giá: ",
+    "goFilter": "Lọc"
   }
 }
