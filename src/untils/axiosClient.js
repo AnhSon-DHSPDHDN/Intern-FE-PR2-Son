@@ -6,7 +6,8 @@ const axiosClient = axios.create({
 	headers: {
 		'content-type': 'application/json',
 	},
-	paramsSerializer: (param) => queryString.stringify(param),
+	paramsSerializer: (param) =>
+		queryString.stringify(param, { arrayFormat: 'repeat' }),
 });
 
 export default axiosClient;

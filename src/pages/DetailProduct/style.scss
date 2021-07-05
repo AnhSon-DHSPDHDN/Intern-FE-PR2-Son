@@ -1,0 +1,213 @@
+@import '../../styles/var';
+@import '../../styles/mixin';
+
+#product-detail-page {
+	.container {
+		.ant-image {
+			width: 100%;
+			.image-main {
+				max-height: 400px;
+				object-fit: cover;
+				width: 100%;
+			}
+		}
+		.list-imgs {
+			display: flex;
+			flex-wrap: wrap;
+			.list-imgs__item {
+				cursor: pointer;
+				height: 120px;
+				margin-bottom: 10px;
+				margin-right: 10px;
+				object-fit: cover;
+				opacity: 0.7;
+				width: 120px;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
+		.main-info {
+			.info-reviews {
+				.is-rating {
+					color: $color-orange;
+				}
+			}
+			.info-description {
+				display: -webkit-box;
+				max-height: 66px;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.option-color {
+				display: flex;
+				.option-label {
+					font-size: 18px;
+				}
+				.list-color {
+					display: flex;
+					align-items: center;
+					.color-black {
+						@include selectColor($color-black);
+					}
+					.color-green {
+						@include selectColor($color-green);
+					}
+					.color-yellow {
+						@include selectColor($color-yellow);
+					}
+					.color-red {
+						@include selectColor($color-red);
+					}
+					.active {
+						border: 2px solid $bg-header-color;
+					}
+				}
+			}
+
+			.option-size {
+				display: flex;
+				.option-label {
+					font-size: 18px;
+				}
+			}
+
+			.add-cart {
+				cursor: pointer;
+				color: $color-orange;
+				border: 1px solid $color-orange;
+				background-color: transparent;
+				padding: 5px 15px;
+				transition: all 0.3s;
+				&:focus {
+					outline: none;
+				}
+				&:hover {
+					color: $color-white;
+					background-color: $color-orange;
+				}
+				&:disabled {
+					border: 1px solid $bg-header-color;
+					background-color: transparent;
+					color: $bg-header-color;
+					cursor: no-drop;
+				}
+			}
+
+			.add-wish {
+				cursor: pointer;
+				color: $color-orange;
+				border: none;
+				background-color: transparent;
+				padding: 5px 15px;
+				transition: all 0.3s;
+				&:focus {
+					outline: none;
+				}
+				&:hover {
+					color: $color-white;
+					background-color: $color-orange;
+				}
+			}
+
+			.share {
+				align-items: center;
+				display: flex;
+				text-align: center;
+				.content__social {
+					display: flex;
+					margin: 10px;
+					.social-item {
+						border-radius: 50%;
+						box-sizing: border-box;
+						color: $color-white;
+						cursor: pointer;
+						font-size: 17px;
+						line-height: 38px;
+						height: 40px;
+						margin: 0 5px;
+						width: 40px;
+					}
+					.fb {
+						background-color: $color-fb;
+						border: 1px solid $color-fb;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-fb;
+						}
+					}
+					.skype {
+						background-color: $color-skype;
+						border: 1px solid $color-skype;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-skype;
+						}
+					}
+					.inta {
+						background-color: $color-inta;
+						border: 1px solid $color-inta;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-inta;
+						}
+					}
+					.youtube {
+						background-color: $color-youtube;
+						border: 1px solid $color-youtube;
+						transition: all 0.3s;
+						&:hover {
+							border: 1px solid $bg-header-color;
+							background-color: $color-white;
+							color: $color-youtube;
+						}
+					}
+				}
+			}
+		}
+
+		.list-review {
+			.user-review {
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+				img {
+					border-radius: 50%;
+					height: 60px;
+					object-fit: cover;
+					width: 60px;
+				}
+				.is-rating {
+					color: $color-orange;
+				}
+			}
+		}
+
+		.send-comment {
+			.btn-submit {
+				cursor: pointer;
+				color: $color-orange;
+				border: 1px solid $color-orange;
+				background-color: transparent;
+				padding: 5px 15px;
+				transition: all 0.3s;
+				&:focus {
+					outline: none;
+				}
+				&:hover {
+					color: $color-white;
+					background-color: $color-orange;
+				}
+			}
+		}
+	}
+}

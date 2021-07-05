@@ -70,3 +70,10 @@
 		}
 	}
 }
+
+@mixin selectColor($color) {
+	background-color: $color;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+}
