@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$Ds82gpPRSA3yPPCY1G0N.uHgHkUNeo88twjWJFGkpxYFjjBjib6CW",
+      "isAdmin": true,
+      "fullName": "App Admin",
+      "mail": "appadmin@gmail.com",
+      "id": 1
+    },
+    {
+      "email": "anhson@gmail.com",
+      "password": "$2a$10$KJpCh6h46ZZd2V328B6rMe3MvrJT96az9piVy.rPLI1H9MR6f2i96",
+      "phone": "85033345645",
+      "mail": "asd@gmail.com",
+      "address": "Quận Hải Châu, Đà Nẵnng",
+      "fullName": "Lê Văn Việt",
+      "id": 2
+    }
+  ]
+}

@@ -9,11 +9,15 @@ import {
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Divider, Drawer } from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './style.scss';
 import VN from 'assets/imgs/vietnam.png';
 import EN from 'assets/imgs/us.jpg';
 import Logo from 'assets/imgs/logo.png';
+import NonAvatar from 'assets/imgs/non-avatar.jpg';
+import { actLogout } from 'redux/actions/authAction';
 
 const navigationBar = [
 	{ name: 'navigation.home', path: '/' },
@@ -26,6 +30,8 @@ const navigationBar = [
 function Header() {
 	const [visibleDrawer, setVisibleDrawer] = useState(false);
 	const { t, i18n } = useTranslation();
+	const dispatch = useDispatch();
+	const { isLoggIn, profile } = useSelector((state) => state.auth);
 
 	const handleChangeEn = () => {
 		i18n.changeLanguage('en');
@@ -42,6 +48,10 @@ function Header() {
 				</li>
 			);
 		});
+	};
+
+	const handleLogout = () => {
+		dispatch(actLogout());
 	};
 
 	return (
@@ -65,10 +75,19 @@ function Header() {
 							alt='us'
 							onClick={handleChangeEn}
 						/>
-						<span className='ml-2'>
-							<a href='/'>{t('header.signin')}</a>/
-							<a href='/'>{t('header.register')}</a>
-						</span>
+						{isLoggIn ? (
+							<span className='ml-2'>
+								<Avatar src={profile.avatar || NonAvatar} />
+								<button className='btn-logout ml-2' onClick={handleLogout}>
+									{t('logout')}
+								</button>
+							</span>
+						) : (
+							<span className='ml-2'>
+								<Link to='/login'>{t('header.signin')}</Link>/
+								<Link to='/register'>{t('header.register')}</Link>
+							</span>
+						)}
 					</div>
 				</div>
 				<Divider className='mt-0 mb-0' />

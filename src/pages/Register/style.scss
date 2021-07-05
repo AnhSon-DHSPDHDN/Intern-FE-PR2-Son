@@ -1,0 +1,17 @@
+@import '../../styles/var';
+
+#register-page {
+	background-image: url('../../assets/imgs/login-bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 70px 0;
+	#form-register {
+		background-color: $color-white;
+		margin: 0 auto;
+		max-width: 500px;
+		padding: 50px 30px;
+		.title {
+			border-bottom: 1px solid $bg-header;
+		}
+	}
+}

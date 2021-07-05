@@ -15,6 +15,12 @@
 					height: 20px;
 					width: 30px;
 				}
+				.btn-logout {
+					border: none;
+					background-color: $color-primary;
+					color: $color-black;
+					cursor: pointer;
+				}
 			}
 		}
 

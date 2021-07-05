@@ -87,5 +87,38 @@
   "sendReview": "Gửi Đánh Giá",
   "noteComment": "Thông tin email của bạn sẽ được ẩn. Các trường bắt buộc có đánh dấu *",
   "yourRating": "Đánh giá: ",
-  "comment": "Bình luận"
+  "comment": "Bình luận",
+  "required": {
+    "username": "Vui lòng nhập username!",
+    "password": "Vui lòng nhập mật khẩu của bạn!",
+    "phoneNumber": "Vui lòng nhập số điện thoại!",
+    "email": "Vui lòng nhập email!",
+    "address": "Vui lòng nhập địa chỉ!",
+    "fullName": "Vui lòng nhập tên của bạn!"
+  },
+  "login": "Đăng nhập",
+  "register": "Đăng ký",
+  "or": "Hoặc",
+  "registerNow": "Đăng ký ngay",
+  "validate": {
+    "password": {
+      "length": "Password ít nhất 6 kí tự!",
+      "repass": "Vui lòng nhập lại mật khẩu!",
+      "passNotMatch": "Nhập lại mật khẩu không khớp!"
+    },
+    "phone": "Vui lòng nhập đúng số điện thoại!",
+    "email": "Email không đúng!"
+  },
+  "address": "Địa chỉ:",
+  "phoneNumber": "Số điện thoại:",
+  "confirmPass": "Nhập lại mật khẩu:",
+  "password": "Mật khẩu",
+  "fullName": "Tên đầy đủ",
+  "loginNow": "Về lại đăng nhập",
+  "loginFail": "Lỗi đăng nhập",
+  "waitMinute": "Đang xử lý",
+  "loginSucess": "Đăng nhập thành công",
+  "logout": "Đăng xuất",
+  "registerSucess": "Đăng ký thành công",
+  "registerFail": "Đăng ký thất bại"
 }
