@@ -13,6 +13,17 @@ import {
 import { useTranslation } from 'react-i18next';
 
 const mockTagsProducts = ['sale', 'hot', 'new'];
+export const showRating = (rating) => {
+	const template = [];
+	let i = 1;
+	while (i <= 5) {
+		if (i <= rating) {
+			template.push(<StarFilled className='is-rating' key={i} />);
+		} else template.push(<StarOutlined className='is-rating' key={i} />);
+		i++;
+	}
+	return template;
+};
 
 function ProductCard() {
 	const { t } = useTranslation();
@@ -45,18 +56,6 @@ function ProductCard() {
 					return null;
 			}
 		});
-	};
-
-	const showRating = (rating) => {
-		const template = [];
-		let i = 1;
-		while (i <= 5) {
-			if (i <= rating) {
-				template.push(<StarFilled className='is-rating' key={i} />);
-			} else template.push(<StarOutlined className='is-rating' key={i} />);
-			i++;
-		}
-		return template;
 	};
 
 	return (

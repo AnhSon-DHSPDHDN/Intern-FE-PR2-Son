@@ -77,5 +77,15 @@
     "price": "Giá",
     "priceRange": "Phạm vi giá: ",
     "goFilter": "Lọc"
-  }
+  },
+  "color": "Màu:",
+  "size": "Cỡ:",
+  "quantity": "Số lượng:",
+  "addToCart": "Thêm Vào Giỏ Hàng",
+  "addToWishList": "Thêm Vào Yêu Thích",
+  "share": "Chia sẽ:",
+  "sendReview": "Gửi Đánh Giá",
+  "noteComment": "Thông tin email của bạn sẽ được ẩn. Các trường bắt buộc có đánh dấu *",
+  "yourRating": "Đánh giá: ",
+  "comment": "Bình luận"
 }

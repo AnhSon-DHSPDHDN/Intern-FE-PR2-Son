@@ -77,5 +77,15 @@
     "price": "Price",
     "priceRange": "Price Range: ",
     "goFilter": "Filter"
-  }
+  },
+  "color": "Color:",
+  "size": "Size:",
+  "quantity": "Quantity:",
+  "addToCart": "Add To Cart",
+  "addToWishList": "Add To Wish List",
+  "share": "Share:",
+  "sendReview": "Send Review",
+  "noteComment": "Your email address will not be published. Required fields are marked *",
+  "yourRating": "Your Rating: ",
+  "comment": "Comment"
 }
