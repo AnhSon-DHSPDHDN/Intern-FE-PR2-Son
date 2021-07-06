@@ -87,5 +87,38 @@
   "sendReview": "Send Review",
   "noteComment": "Your email address will not be published. Required fields are marked *",
   "yourRating": "Your Rating: ",
-  "comment": "Comment"
+  "comment": "Comment",
+  "required": {
+    "username": "Please input your username!",
+    "password": "Please input your password!",
+    "phoneNumber": "Please input your phone number!",
+    "email": "Please input your E-mail!",
+    "address": "Please input your Address!",
+    "fullName": "Please input your name!"
+  },
+  "login": "Login",
+  "register": "Register",
+  "or": "Or",
+  "registerNow": "Register now",
+  "validate": {
+    "password": {
+      "length": "Please input 6 character for password!",
+      "repass": "Please confirm your password!",
+      "passNotMatch": "The two passwords that you entered do not match!"
+    },
+    "phone": "Please input correct phone number!",
+    "email": "The input is not valid E-mail!"
+  },
+  "address": "Address",
+  "phoneNumber": "Phone Number",
+  "confirmPass": "Confirm Password",
+  "password": "Password",
+  "fullName": "Full Name",
+  "loginNow": "Go back login",
+  "loginFail": "Login Error",
+  "waitMinute": "Wait Minute",
+  "loginSucess": "Login Success",
+  "logout": "Logout",
+  "registerSucess": "Register Success",
+  "registerFail": "Register Fail"
 }
