@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Carousel, Col, Divider, Row } from 'antd';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -25,6 +25,8 @@ import brand6 from 'assets/brand/6.png';
 import brand7 from 'assets/brand/7.png';
 import brand8 from 'assets/brand/8.png';
 import brand9 from 'assets/brand/9.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { actGetProductsHome } from 'redux/actions/productAction';
 
 function NextArrow(props) {
 	const { onClick } = props;
@@ -90,6 +92,11 @@ const settingsBrand = {
 
 function HomePage() {
 	const { t } = useTranslation();
+	const dispatch = useDispatch();
+	const { productSales, productNews, isLoading } = useSelector(
+		(state) => state.productReducer
+	);
+	const productLimit = productSales.slice(0, 2);
 	const settings = {
 		infinite: true,
 		speed: 500,
@@ -133,6 +140,31 @@ function HomePage() {
 			);
 		});
 	};
+
+	const mapListProduct = (list) => {
+		return list.map((product) => {
+			return <ProductCard key={product.id} product={product} />;
+		});
+	};
+
+	const mapProductLimit = (list) => {
+		return list.map((product) => {
+			return (
+				<Col
+					lg={{ span: 6 }}
+					sm={{ span: 12 }}
+					xs={{ span: 24 }}
+					key={product.id}
+				>
+					<ProductCard product={product} />
+				</Col>
+			);
+		});
+	};
+
+	useEffect(() => {
+		dispatch(actGetProductsHome());
+	}, [dispatch]);
 
 	return (
 		<section id='home-page'>
@@ -204,13 +236,11 @@ function HomePage() {
 			<div className='selling-product container'>
 				<h1>{t('homePage.productSale')}</h1>
 				<Slider {...settings}>
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
+					{isLoading ? (
+						<ProductCard loading={isLoading} />
+					) : (
+						mapListProduct(productSales)
+					)}
 				</Slider>
 			</div>
 			<div className='banner-1 container mt-10'>
@@ -246,12 +276,18 @@ function HomePage() {
 							</span>
 						</div>
 					</Col>
-					<Col lg={{ span: 6 }} sm={{ span: 12 }} xs={{ span: 24 }}>
-						<ProductCard />
-					</Col>
-					<Col lg={{ span: 6 }} sm={{ span: 12 }} xs={{ span: 24 }}>
-						<ProductCard />
-					</Col>
+					{isLoading ? (
+						<>
+							<Col lg={{ span: 6 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+								<ProductCard />
+							</Col>
+							<Col lg={{ span: 6 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+								<ProductCard />
+							</Col>
+						</>
+					) : (
+						mapProductLimit(productLimit)
+					)}
 				</Row>
 			</div>
 			<div className='partner container mt-10'>
@@ -260,13 +296,11 @@ function HomePage() {
 			<div className='selling-product new-product container mt-8'>
 				<h1>{t('homePage.productNew')}</h1>
 				<Slider {...settings}>
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
+					{isLoading ? (
+						<ProductCard loading={isLoading} />
+					) : (
+						mapListProduct(productNews)
+					)}
 				</Slider>
 				<Divider />
 			</div>

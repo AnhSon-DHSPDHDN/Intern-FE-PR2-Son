@@ -18,6 +18,7 @@ import EN from 'assets/imgs/us.jpg';
 import Logo from 'assets/imgs/logo.png';
 import NonAvatar from 'assets/imgs/non-avatar.jpg';
 import { actLogout } from 'redux/actions/authAction';
+import useCustomeHistory from 'hooks/useCustomHistory';
 
 const navigationBar = [
 	{ name: 'navigation.home', path: '/' },
@@ -31,7 +32,9 @@ function Header() {
 	const [visibleDrawer, setVisibleDrawer] = useState(false);
 	const { t, i18n } = useTranslation();
 	const dispatch = useDispatch();
+	const history = useCustomeHistory();
 	const { isLoggIn, profile } = useSelector((state) => state.auth);
+	const { flagCart } = useSelector((state) => state.cartReducer);
 
 	const handleChangeEn = () => {
 		i18n.changeLanguage('en');
@@ -109,9 +112,12 @@ function Header() {
 							<div className='btn-icon__notifi'>1</div>
 							<div className='btn-icon__name'>{t('header.wishList')}</div>
 						</span>
-						<span className='btn-wishlist btn-icon'>
+						<span
+							className='btn-wishlist btn-icon'
+							onClick={() => history.push('/cart')}
+						>
 							<ShoppingCartOutlined />
-							<div className='btn-icon__notifi'>1</div>
+							<div className='btn-icon__notifi'>{flagCart}</div>
 							<div className='btn-icon__name'>{t('header.cart')}</div>
 						</span>
 					</div>

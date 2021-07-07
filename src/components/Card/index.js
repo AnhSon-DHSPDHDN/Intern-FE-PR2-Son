@@ -1,9 +1,7 @@
-import { Card } from 'antd';
+import { Card, message } from 'antd';
 import React from 'react';
 
 import './style.scss';
-import img1 from 'assets/products/pr1.jpg';
-import img2 from 'assets/products/pr2.jpg';
 import {
 	HeartOutlined,
 	ShoppingCartOutlined,
@@ -11,8 +9,9 @@ import {
 	StarOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { actAddToCartSuccess } from 'redux/actions/cartAction';
 
-const mockTagsProducts = ['sale', 'hot', 'new'];
 export const showRating = (rating) => {
 	const template = [];
 	let i = 1;
@@ -25,8 +24,10 @@ export const showRating = (rating) => {
 	return template;
 };
 
-function ProductCard() {
+function ProductCard(props) {
 	const { t } = useTranslation();
+	const { loading, product } = props;
+	const dispatch = useDispatch();
 
 	const mapListTags = (tags) => {
 		return tags.map((tag, index) => {
@@ -58,16 +59,26 @@ function ProductCard() {
 		});
 	};
 
+	const handleAddToCart = (product) => {
+		dispatch(actAddToCartSuccess(product));
+		message.success(t('addToCartSuccess'));
+	};
+
 	return (
 		<Card
 			id='card-product'
 			className='card-product ml-2 mr-2 mt-2 mb-2'
 			hoverable
-			loading={false}
+			loading={loading}
 		>
-			<div className='product-tags'>{mapListTags(mockTagsProducts)}</div>
+			<div className='product-tags'>{product && mapListTags(product.tags)}</div>
 			<div className='card-actions'>
-				<button className='btn-add add-cart btn-action'>
+				<button
+					className='btn-add add-cart btn-action'
+					onClick={() => {
+						handleAddToCart(product);
+					}}
+				>
 					<ShoppingCartOutlined />
 				</button>
 				<button className='btn-wish add-wish btn-action'>
@@ -77,20 +88,18 @@ function ProductCard() {
 			<img
 				className='card-img'
 				alt='products'
-				src={img1}
-				onMouseMove={(e) => (e.target.src = img2)}
-				onMouseOut={(e) => (e.target.src = img1)}
+				src={product?.imageMain}
+				onMouseMove={(e) => (e.target.src = product?.images[1])}
+				onMouseOut={(e) => (e.target.src = product?.imageMain)}
 			/>
 			<div className='card-info'>
-				<h3 className='product-name'>
-					Apple - Watch Series 3 with White Sport Band
-				</h3>
+				<h3 className='product-name'>{product?.name}</h3>
 				<div className='product-price'>
-					<span className='old-price price mr-6'>$ 22.99</span>
-					<span className='new-price price'>$ 20.99</span>
+					<span className='old-price price mr-6'>$ {product?.priceOld}</span>
+					<span className='new-price price'>$ {product?.priceNew}</span>
 				</div>
-				{showRating(3)}
-				<span className='product-review ml-2'>{`( 2 ${t(
+				{showRating(product?.rating)}
+				<span className='product-review ml-2'>{`( ${product?.rating} ${t(
 					'homePage.review'
 				)} )`}</span>
 			</div>
