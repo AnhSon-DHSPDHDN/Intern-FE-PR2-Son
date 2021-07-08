@@ -89,7 +89,7 @@ function CartPage() {
 			key: 'total',
 			render: (record) => (
 				<div className='total-column'>
-					$ {record?.quantity * record?.priceNew}
+					$ {Math.round(record?.quantity * record?.priceNew)}
 				</div>
 			),
 		},
@@ -189,7 +189,7 @@ function CartPage() {
 							<hr></hr>
 							<div className='cart-subtotal mt-6'>
 								<div className='fw-6'>{t('subtotal')}:</div>
-								<div className='fw-6'>${totalMonney}</div>
+								<div className='fw-6'>${Math.round(totalMonney)}</div>
 							</div>
 							<Divider />
 							<h3>{t('payment')}:</h3>

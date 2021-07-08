@@ -1,9 +1,16 @@
-import { Col, Divider, Form, Image, InputNumber, Rate, Row } from 'antd';
-import React, { useState } from 'react';
+import {
+	Col,
+	Divider,
+	Form,
+	Image,
+	InputNumber,
+	message,
+	Rate,
+	Row,
+	Spin,
+} from 'antd';
+import React, { useState, useEffect } from 'react';
 
-import imgMain2 from 'assets/products/pr1.jpg';
-import img1 from 'assets/products/pr2.jpg';
-import img2 from 'assets/products/pr3.jpg';
 import './style.scss';
 import { showRating } from 'components/Card';
 import { useTranslation } from 'react-i18next';
@@ -16,44 +23,27 @@ import {
 	YoutubeOutlined,
 } from '@ant-design/icons';
 import TextArea from 'antd/lib/input/TextArea';
-
-const mockProduct = {
-	name: 'Beige metal hoop tote bag',
-	description:
-		'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.',
-	rating: 4,
-	reviews: 2,
-	price: 80,
-	imgMain: imgMain2,
-	images: [imgMain2, img1, img2],
-	category: 'Sam sung',
-};
-
-const mockReview = [
-	{
-		id: 1,
-		fullName: 'Trần Văn Anh Sơn',
-		avatar:
-			'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/168400522_1617527291784240_3208502572735437647_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=VbUDWEdI2nIAX8xCU15&_nc_ht=scontent.fhan2-4.fna&oh=9516f76159f7452c2c7228aaaa953341&oe=60E5C190',
-		comment: 'Hàng đẹp, mẫu mã đẹp, phù hợp với giá tiền. Sử dụng tốt',
-		rating: 3,
-	},
-	{
-		id: 2,
-		fullName: 'Trần Văn Anh Sơn',
-		avatar:
-			'https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/168400522_1617527291784240_3208502572735437647_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=VbUDWEdI2nIAX8xCU15&_nc_ht=scontent.fhan2-4.fna&oh=9516f76159f7452c2c7228aaaa953341&oe=60E5C190',
-		comment: 'Hàng đẹp, mẫu mã đẹp, phù hợp với giá tiền. Sử dụng tốt',
-		rating: 4,
-	},
-];
+import { useDispatch } from 'react-redux';
+import useCustomeHistory from 'hooks/useCustomHistory';
+import { actGetProductById } from 'redux/actions/productAction';
+import { useSelector } from 'react-redux';
+import { actAddMoreToCartSuccess } from 'redux/actions/cartAction';
+import { actAddWishlistSuccess } from 'redux/actions/wishlistAction';
+import { actCreateComment, actGetComment } from 'redux/actions/commentAction';
+import NonAvatar from 'assets/imgs/non-avatar.jpg';
 
 function DetailProduct() {
 	const { t } = useTranslation();
-	const [imgMain, setImgMain] = useState(imgMain2);
+	const { product, isLoading } = useSelector((state) => state.productReducer);
+	const comments = useSelector((state) => state.commentReducer.comments);
+	const isLoadingCmt = useSelector((state) => state.commentReducer.isLoading);
+	const { isLoggIn, profile } = useSelector((state) => state.auth);
+	const [imgMain, setImgMain] = useState(null);
 	const [chooseColor, setChooseColor] = useState(null);
 	const [chooseQuantity, setChooseQuantity] = useState(null);
 	const [form] = Form.useForm();
+	const dispatch = useDispatch();
+	const history = useCustomeHistory();
 
 	const handleChooseColor = (e) => {
 		const color = e.target.getAttribute('name');
@@ -70,11 +60,35 @@ function DetailProduct() {
 	};
 
 	const handleClickBuy = () => {
+		dispatch(actAddMoreToCartSuccess({ product: product, chooseQuantity }));
 		setChooseQuantity(null);
 		setChooseColor(null);
+		message.success(t('addToCartSuccess'));
+	};
+
+	const handleClickWishlist = () => {
+		if (isLoggIn) {
+			dispatch(actAddWishlistSuccess(product));
+			message.success(t('addToWishListSuccess'));
+		} else {
+			message.warn(t('needLoginWishList'));
+		}
 	};
 
 	const handleSubmitComment = (value) => {
+		if (isLoggIn) {
+			const comment = {
+				idProduct: product.id,
+				description: value.yourComment,
+				rating: value.yourRating,
+				createAt: new Date().getTime(),
+				avatar: profile.avatar,
+				nameCmt: profile.fullName,
+			};
+			dispatch(actCreateComment(comment));
+		} else {
+			message.warn(t('needLoginToComment'));
+		}
 		form.resetFields();
 	};
 
@@ -84,15 +98,47 @@ function DetailProduct() {
 				<Row gutter={[16, 16]} key={review.id} className='my-4'>
 					<Col span={3}>
 						<div className='user-review ml-2'>
-							<img src={review.avatar} alt='avatar'></img>
+							<img src={review.avatar || NonAvatar} alt='avatar'></img>
 							<div className='rating'>{showRating(review.rating)}</div>
 						</div>
 					</Col>
 					<Col span={21}>
-						<h4>{review.fullName}</h4>
-						<p>{review.comment}</p>
+						<h4>{review.nameCmt}</h4>
+						<p>{review.description}</p>
 					</Col>
 				</Row>
+			);
+		});
+	};
+
+	useEffect(() => {
+		const { location } = history;
+		const id = location.pathname.split('/')[2];
+		dispatch(actGetProductById(id));
+		// eslint-disable-next-line
+	}, [dispatch, history.location.pathname]);
+
+	useEffect(() => {
+		if (product.imageMain) {
+			setImgMain(product.imageMain);
+		}
+		// eslint-disable-next-line
+	}, [isLoading]);
+
+	useEffect(() => {
+		dispatch(actGetComment(product.id));
+	}, [dispatch, product.id]);
+
+	const mapListImages = (imgs) => {
+		return imgs.map((img, index) => {
+			return (
+				<Image
+					src={img}
+					className='list-imgs__item'
+					preview={false}
+					key={index}
+					onClick={handleChangeImg}
+				></Image>
 			);
 		});
 	};
@@ -105,24 +151,7 @@ function DetailProduct() {
 						<Row gutter={[16, 16]}>
 							<Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 6 }}>
 								<div className='list-imgs'>
-									<Image
-										src={img1}
-										className='list-imgs__item'
-										preview={false}
-										onClick={handleChangeImg}
-									></Image>
-									<Image
-										src={img2}
-										className='list-imgs__item'
-										preview={false}
-										onClick={handleChangeImg}
-									></Image>
-									<Image
-										src={img2}
-										className='list-imgs__item'
-										preview={false}
-										onClick={handleChangeImg}
-									></Image>
+									{product.images && mapListImages(product.images)}
 								</div>
 							</Col>
 							<Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 18 }}>
@@ -132,14 +161,14 @@ function DetailProduct() {
 					</Col>
 					<Col xs={{ span: 24 }} sm={{ span: 24 }} lg={{ span: 12 }}>
 						<div className='main-info px-4'>
-							<h1>{mockProduct.name}</h1>
+							<h1>{product?.name}</h1>
 							<div className='info-reviews'>
-								{showRating(mockProduct.rating)}
+								{showRating(product?.rating)}
 								<span className='product-review ml-2'>{`( ${
-									mockProduct.reviews
+									product?.rating
 								} ${t('homePage.review')} )`}</span>
 							</div>
-							<p className='info-description my-2'>{mockProduct.description}</p>
+							<p className='info-description my-2'>{product?.description}</p>
 							<div className='option-color my-4'>
 								<span className='label-color option-label'>{t('color')}</span>
 								<div className='list-color ml-6'>
@@ -191,13 +220,16 @@ function DetailProduct() {
 								<ShoppingCartOutlined className='mr-2' />
 								{t('addToCart')}
 							</button>
-							<button className='btn-wish add-wish ml-4'>
+							<button
+								className='btn-wish add-wish ml-4'
+								onClick={handleClickWishlist}
+							>
 								<HeartOutlined className='mr-2' />
 								{t('addToWishList')}
 							</button>
 							<Divider />
 							<div className='product-quantity'>
-								{t('productPage.category')}: {mockProduct.category}
+								{t('productPage.category')}: {product?.category}
 							</div>
 							<div className='share'>
 								<span>{t('share')}</span>
@@ -220,7 +252,10 @@ function DetailProduct() {
 					</Col>
 				</Row>
 				<h1 className='my-6'>{t('homePage.review')}</h1>
-				<div className='list-review'>{mapListReview(mockReview)}</div>
+				<div className='list-review'>
+					{mapListReview(comments)}
+					{isLoadingCmt && <Spin className='spin__antd'></Spin>}
+				</div>
 				<h1 className='my-6'>{t('sendReview')}</h1>
 				<div className='send-comment'>
 					<p>{t('noteComment')}</p>
@@ -228,14 +263,14 @@ function DetailProduct() {
 						<Form.Item
 							rules={[{ required: true }]}
 							label={t('yourRating')}
-							name='your-rating'
+							name='yourRating'
 						>
 							<Rate></Rate>
 						</Form.Item>
 						<Form.Item
 							rules={[{ required: true }]}
 							label={t('comment')}
-							name='your-comment'
+							name='yourComment'
 						>
 							<TextArea></TextArea>
 						</Form.Item>

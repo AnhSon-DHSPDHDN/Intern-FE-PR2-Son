@@ -21,3 +21,11 @@ export const createUser = async (user) => {
 	});
 	return res;
 };
+
+export const updateUser = async (id, user) => {
+	const res = await axiosClient.put(`users/${id}`, {
+		...user,
+		email: `${user.email}@gmail.com`,
+	});
+	return res;
+};

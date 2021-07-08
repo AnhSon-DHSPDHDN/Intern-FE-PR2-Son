@@ -30,3 +30,22 @@ export const actClearNotification = () => {
 		type: UserTypes.CLEAR_NOTIFICATION,
 	};
 };
+
+export const actUpdateUser = (payload) => {
+	return {
+		type: UserTypes.UPDATE_USER,
+		payload: payload,
+	};
+};
+
+export const actUpdateUserSuccess = (payload) => {
+	return {
+		type: UserTypes.UPDATE_USER_SUCCESS,
+	};
+};
+
+export const actUpdateUserFail = () => {
+	return {
+		type: UserTypes.UPDATE_USER_FAIL,
+	};
+};

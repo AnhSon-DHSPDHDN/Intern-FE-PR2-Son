@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLeading } from '@redux-saga/core/effects';
-import { getProducts } from 'apis/productsApi';
+import { getProductById, getProducts } from 'apis/productsApi';
 import { ProductTypes } from 'constants/types';
 import {
 	actGetProductsHomeSuccess,
@@ -7,6 +7,8 @@ import {
 	actGetProductsPageSuccess,
 	actChangePageProductSuccess,
 	actFiltersProductSuccess,
+	actGetProductByIdFail,
+	actGetProductByIdSuccess,
 } from 'redux/actions/productAction';
 
 function* getProductsHome() {
@@ -57,6 +59,20 @@ function* filterProductPage({ payload }) {
 	);
 }
 
+function* getProductId({ payload }) {
+	yield put(actSetLoading());
+	try {
+		const product = yield call(getProductById, payload);
+		yield put(actGetProductByIdSuccess(product));
+	} catch (error) {
+		yield put(actGetProductByIdFail());
+	}
+}
+
+function* watchGetProductId() {
+	yield takeEvery(ProductTypes.GET_PRODUCT_BY_ID, getProductId);
+}
+
 function* watchFilterProductPage() {
 	yield takeEvery(ProductTypes.FILTER_PRODUCT, filterProductPage);
 }
@@ -79,4 +95,5 @@ export default [
 	watchGetProductsPage(),
 	watchOnChangePage(),
 	watchFilterProductPage(),
+	watchGetProductId(),
 ];
