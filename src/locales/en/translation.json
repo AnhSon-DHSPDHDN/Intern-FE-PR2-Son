@@ -147,5 +147,15 @@
   "checkoutFail": "Checkout Fails!",
   "checkoutSuccess": "Checkout Success",
   "loading": "Loading..",
-  "order": "Order"
+  "order": "Order",
+  "infoMe": "Info User",
+  "updateInfo": "Update Info",
+  "avatar": "Avatar",
+  "updateFail": "Update Fail",
+  "updateSuccess": "Update Success",
+  "createAt": "Create At",
+  "needLoginWishList": "Need logged to add wishlist product",
+  "addToWishListSuccess": "Add to wish list success!",
+  "buy": "Buy",
+  "needLoginToComment": "Need Login to comment"
 }

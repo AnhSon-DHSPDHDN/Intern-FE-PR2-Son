@@ -31,3 +31,17 @@ export const actSetNotification = () => {
 		type: OrderTypes.SET_NOTIFICATION_ORDER,
 	};
 };
+
+export const actGetOrderUser = (payload) => {
+	return {
+		type: OrderTypes.GET_ORDERS_BY_USER,
+		payload: payload,
+	};
+};
+
+export const actGetOrderUserSuccess = (payload) => {
+	return {
+		type: OrderTypes.GET_ORDERS_BY_USER_SUCCESS,
+		payload: payload,
+	};
+};

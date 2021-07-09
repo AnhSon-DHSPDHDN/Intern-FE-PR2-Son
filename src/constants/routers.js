@@ -46,6 +46,11 @@ export const appRouter = [
 		path: '/cart',
 		component: React.lazy(() => import('pages/Cart')),
 	},
+	{
+		isExact: true,
+		path: '/profile',
+		component: React.lazy(() => import('pages/Profile')),
+	},
 ];
 
 export const adminRouter = [

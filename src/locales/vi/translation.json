@@ -147,5 +147,15 @@
   "checkoutFail": "Thanh toán thất bại!",
   "checkoutSuccess": "Thanh toán thành công!",
   "loading": "Đang xử lý",
-  "order": "Đơn hàng"
+  "order": "Đơn hàng",
+  "infoMe": "Thông tin cá nhân",
+  "updateInfo": "Cập nhật thông tin",
+  "avatar": "Hình đại diện",
+  "updateFail": "Lỗi cập nhật",
+  "updateSuccess": "Cập nhật thành công!",
+  "createAt": "Ngày tạo",
+  "needLoginWishList": "Bạn phải đăng nhập để thêm yêu thích",
+  "addToWishListSuccess": "Thêm vào yêu thích thành công!",
+  "buy": "Mua",
+  "needLoginToComment": "Bạn phải đăng nhập để đánh giá!"
 }

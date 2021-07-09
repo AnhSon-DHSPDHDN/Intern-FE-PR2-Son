@@ -1,9 +1,10 @@
-import { call, put, takeLatest } from '@redux-saga/core/effects';
-import { createOrderApi } from 'apis/orderApi';
+import { call, put, takeEvery, takeLatest } from '@redux-saga/core/effects';
+import { createOrderApi, getOrderByUser } from 'apis/orderApi';
 import { OrderTypes } from 'constants/types';
 import {
 	actCreateOrderFail,
 	actCreateOrderSuccess,
+	actGetOrderUserSuccess,
 	actSetLoading,
 	actSetNotification,
 } from 'redux/actions/orderAction';
@@ -28,9 +29,19 @@ function* createOrder({ payload }) {
 	}
 }
 
+function* onGetOrderUser({ payload }) {
+	yield put(actSetLoading());
+	const orders = yield call(getOrderByUser, payload);
+	yield put(actGetOrderUserSuccess(orders));
+}
+
+function* watchGetOrderUser() {
+	yield takeEvery(OrderTypes.GET_ORDERS_BY_USER, onGetOrderUser);
+}
+
 function* watchCreateOrder() {
 	yield takeLatest(OrderTypes.CREATE_ORDER, createOrder);
 }
 
 // eslint-disable-next-line
-export default [watchCreateOrder()];
+export default [watchCreateOrder(), watchGetOrderUser()];

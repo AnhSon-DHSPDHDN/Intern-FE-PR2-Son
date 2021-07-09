@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
 	HeartOutlined,
@@ -8,7 +8,7 @@ import {
 	UnorderedListOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { Divider, Drawer } from 'antd';
+import { Divider, Drawer, List, message } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +19,7 @@ import Logo from 'assets/imgs/logo.png';
 import NonAvatar from 'assets/imgs/non-avatar.jpg';
 import { actLogout } from 'redux/actions/authAction';
 import useCustomeHistory from 'hooks/useCustomHistory';
+import axiosClient from 'untils/axiosClient';
 
 const navigationBar = [
 	{ name: 'navigation.home', path: '/' },
@@ -33,8 +34,13 @@ function Header() {
 	const { t, i18n } = useTranslation();
 	const dispatch = useDispatch();
 	const history = useCustomeHistory();
+	const dropdownRef = useRef(null);
+	const typingTimeoutRef = useRef(null);
+	const [visibleDropdown, setVisibleDropdown] = useState(false);
+	const [dataProducts, setDataProducts] = useState([]);
 	const { isLoggIn, profile } = useSelector((state) => state.auth);
 	const { flagCart } = useSelector((state) => state.cartReducer);
+	const { flagWishlist } = useSelector((state) => state.wistlistReducer);
 
 	const handleChangeEn = () => {
 		i18n.changeLanguage('en');
@@ -46,7 +52,10 @@ function Header() {
 	const mapNavbar = (data) => {
 		return data.map((nav, index) => {
 			return (
-				<li key={index}>
+				<li
+					key={index}
+					className={nav.path === history.location.pathname ? 'active' : ''}
+				>
 					<Link to={nav.path}>{t(nav.name)}</Link>
 				</li>
 			);
@@ -56,6 +65,54 @@ function Header() {
 	const handleLogout = () => {
 		dispatch(actLogout());
 	};
+
+	const handleSearchChange = (e) => {
+		const value = e.target.value;
+
+		if (typingTimeoutRef.current) {
+			clearTimeout(typingTimeoutRef.current);
+		}
+
+		typingTimeoutRef.current = setTimeout(() => {
+			onSearch(value);
+		}, 500);
+	};
+
+	const onSearch = (value) => {
+		axiosClient
+			.get('products', {
+				params: {
+					q: value,
+				},
+			})
+			.then((res) => {
+				if (res.status === 200) {
+					setDataProducts(res.data);
+					setVisibleDropdown(true);
+				} else throw new Error();
+			})
+			.catch((err) => {
+				message.error(err);
+			});
+	};
+
+	const handleClickOutSide = (e) => {
+		if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+			setVisibleDropdown(false);
+		}
+	};
+
+	const handleViewProduct = (id) => {
+		setVisibleDropdown(false);
+		history.push(`/products/${id}`);
+	};
+
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutSide);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutSide);
+		};
+	}, []);
 
 	return (
 		<section id='header'>
@@ -80,7 +137,10 @@ function Header() {
 						/>
 						{isLoggIn ? (
 							<span className='ml-2'>
-								<Avatar src={profile.avatar || NonAvatar} />
+								<Avatar
+									src={profile.avatar || NonAvatar}
+									onClick={() => history.push('/profile')}
+								/>
 								<button className='btn-logout ml-2' onClick={handleLogout}>
 									{t('logout')}
 								</button>
@@ -103,13 +163,37 @@ function Header() {
 							className='input-search'
 							placeholder={t('header.placeholder')}
 							name='search-product'
+							onChange={handleSearchChange}
 						></input>
 						<SearchOutlined className='icon-search' />
+						{visibleDropdown && (
+							<div ref={dropdownRef} className='dropdown-container'>
+								<List
+									itemLayout='horizontal'
+									dataSource={dataProducts}
+									renderItem={(item) => (
+										<List.Item>
+											<List.Item.Meta
+												avatar={<Avatar src={item?.imageMain} />}
+												title={
+													<span
+														className='name-product'
+														onClick={() => handleViewProduct(item?.id)}
+													>
+														{item?.name}
+													</span>
+												}
+											/>
+										</List.Item>
+									)}
+								></List>
+							</div>
+						)}
 					</div>
 					<div className='header__main-btns'>
 						<span className='btn-wishlist btn-icon mr-8'>
 							<HeartOutlined />
-							<div className='btn-icon__notifi'>1</div>
+							<div className='btn-icon__notifi'>{flagWishlist}</div>
 							<div className='btn-icon__name'>{t('header.wishList')}</div>
 						</span>
 						<span

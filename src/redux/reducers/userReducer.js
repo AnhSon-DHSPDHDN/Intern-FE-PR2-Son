@@ -13,6 +13,12 @@ export const userReducer = (state = initialState, action) => {
 		case UserTypes.CREATE_FAIL: {
 			return { status: 'registerFail', isLoading: false };
 		}
+		case UserTypes.UPDATE_USER_SUCCESS: {
+			return { status: 'updateSuccess', isLoading: false };
+		}
+		case UserTypes.UPDATE_USER_FAIL: {
+			return { status: 'updateFail', isLoading: false };
+		}
 		case UserTypes.SET_IS_LOADING: {
 			return { ...state, isLoading: true };
 		}

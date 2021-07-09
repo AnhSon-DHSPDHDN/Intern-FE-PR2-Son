@@ -9,8 +9,10 @@ import {
 	StarOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actAddToCartSuccess } from 'redux/actions/cartAction';
+import useCustomeHistory from 'hooks/useCustomHistory';
+import { actAddWishlistSuccess } from 'redux/actions/wishlistAction';
 
 export const showRating = (rating) => {
 	const template = [];
@@ -27,7 +29,9 @@ export const showRating = (rating) => {
 function ProductCard(props) {
 	const { t } = useTranslation();
 	const { loading, product } = props;
+	const { isLoggIn } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
+	const history = useCustomeHistory();
 
 	const mapListTags = (tags) => {
 		return tags.map((tag, index) => {
@@ -64,6 +68,19 @@ function ProductCard(props) {
 		message.success(t('addToCartSuccess'));
 	};
 
+	const handleRedirectDetail = (id) => {
+		history.push(`/products/${id}`);
+	};
+
+	const handleAddWishList = (product) => {
+		if (isLoggIn) {
+			dispatch(actAddWishlistSuccess(product));
+			message.success(t('addToWishListSuccess'));
+		} else {
+			message.warn(t('needLoginWishList'));
+		}
+	};
+
 	return (
 		<Card
 			id='card-product'
@@ -81,7 +98,12 @@ function ProductCard(props) {
 				>
 					<ShoppingCartOutlined />
 				</button>
-				<button className='btn-wish add-wish btn-action'>
+				<button
+					className='btn-wish add-wish btn-action'
+					onClick={() => {
+						handleAddWishList(product);
+					}}
+				>
 					<HeartOutlined />
 				</button>
 			</div>
@@ -92,7 +114,12 @@ function ProductCard(props) {
 				onMouseMove={(e) => (e.target.src = product?.images[1])}
 				onMouseOut={(e) => (e.target.src = product?.imageMain)}
 			/>
-			<div className='card-info'>
+			<div
+				className='card-info'
+				onClick={() => {
+					handleRedirectDetail(product.id);
+				}}
+			>
 				<h3 className='product-name'>{product?.name}</h3>
 				<div className='product-price'>
 					<span className='old-price price mr-6'>$ {product?.priceOld}</span>

@@ -57,6 +57,13 @@ export const productReducer = (state = initialState, action) => {
 				},
 			};
 		}
+		case ProductTypes.GET_PRODUCT_BY_ID_SUCCESS: {
+			return { ...state, isLoading: false, product: { ...action.payload } };
+		}
+		case ProductTypes.GET_PRODUCT_BY_ID_FAIL: {
+			window.location.href = '/';
+			return { ...state, isLoading: false };
+		}
 		case ProductTypes.SET_IS_LOADING: {
 			return { ...state, isLoading: true };
 		}

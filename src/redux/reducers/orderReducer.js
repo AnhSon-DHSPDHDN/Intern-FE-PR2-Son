@@ -20,6 +20,9 @@ export const orderReducer = (state = initialState, action) => {
 				notification: 'checkoutSuccess',
 			};
 		}
+		case OrderTypes.GET_ORDERS_BY_USER_SUCCESS: {
+			return { ...state, orders: [...action.payload], isLoading: false };
+		}
 		case OrderTypes.CREATE_ORDER_FAIL: {
 			return { ...state, isLoading: false, notification: 'checkoutFail' };
 		}

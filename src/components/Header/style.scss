@@ -51,6 +51,27 @@
 						outline: none;
 					}
 				}
+
+				.dropdown-container {
+					background-color: white;
+					border-radius: 10px;
+					left: 25px;
+					height: 180px;
+					overflow: hidden;
+					overflow-y: scroll;
+					position: absolute;
+					padding: 10px 20px;
+					right: 25px;
+					top: 35px;
+					z-index: 999;
+					&::-webkit-scrollbar {
+						display: none;
+					}
+					.name-product:hover {
+						color: $color-orange;
+						cursor: pointer;
+					}
+				}
 			}
 
 			&-btns {

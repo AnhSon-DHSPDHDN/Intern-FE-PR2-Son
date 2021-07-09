@@ -60,3 +60,23 @@ export const actFiltersProductSuccess = (payload) => {
 		payload: payload,
 	};
 };
+
+export const actGetProductById = (payload) => {
+	return {
+		type: ProductTypes.GET_PRODUCT_BY_ID,
+		payload: payload,
+	};
+};
+
+export const actGetProductByIdSuccess = (payload) => {
+	return {
+		type: ProductTypes.GET_PRODUCT_BY_ID_SUCCESS,
+		payload: payload,
+	};
+};
+
+export const actGetProductByIdFail = () => {
+	return {
+		type: ProductTypes.GET_PRODUCT_BY_ID_FAIL,
+	};
+};
