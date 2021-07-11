@@ -157,5 +157,9 @@
   "needLoginWishList": "Bạn phải đăng nhập để thêm yêu thích",
   "addToWishListSuccess": "Thêm vào yêu thích thành công!",
   "buy": "Mua",
-  "needLoginToComment": "Bạn phải đăng nhập để đánh giá!"
+  "needLoginToComment": "Bạn phải đăng nhập để đánh giá!",
+  "priceNew": "Giá mới",
+  "priceOld": "Giá cũ",
+  "rating": "Đánh giá",
+  "tags": "Thẻ"
 }

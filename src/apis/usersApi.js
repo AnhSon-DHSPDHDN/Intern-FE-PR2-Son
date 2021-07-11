@@ -1,5 +1,10 @@
 import axiosClient from 'untils/axiosClient';
 
+export const getAllUser = async (payload) => {
+	const { data } = await axiosClient.get('users', { params: { ...payload } });
+	return data;
+};
+
 export const getUserById = async (id) => {
 	const { data } = await axiosClient.get('users', {
 		params: { id: id },
@@ -27,5 +32,10 @@ export const updateUser = async (id, user) => {
 		...user,
 		email: `${user.email}@gmail.com`,
 	});
+	return res;
+};
+
+export const deleteUser = async (id) => {
+	const res = await axiosClient.delete(`users/${id}`);
 	return res;
 };

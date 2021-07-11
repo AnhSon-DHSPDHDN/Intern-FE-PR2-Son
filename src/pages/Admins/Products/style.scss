@@ -1,0 +1,31 @@
+@import '../../../styles/var';
+
+#admin {
+	.filter-admin {
+		display: flex;
+		justify-content: space-between;
+		#input-search {
+			border: 1px solid $color-orange;
+			outline: none;
+			padding: 0 10px;
+			width: 200px;
+		}
+	}
+
+	.table-admin {
+		.img-product {
+			height: 70px;
+			object-fit: cover;
+			width: 70px;
+		}
+
+		.btn-delete {
+			color: $color-red;
+			cursor: pointer;
+		}
+
+		.btn-edit {
+			cursor: pointer;
+		}
+	}
+}

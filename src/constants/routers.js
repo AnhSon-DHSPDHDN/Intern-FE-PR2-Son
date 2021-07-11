@@ -57,6 +57,16 @@ export const adminRouter = [
 	{
 		isExact: true,
 		path: '/admin',
-		component: React.lazy(() => import('pages/Admins')),
+		component: React.lazy(() => import('pages/Admins/Overview')),
+	},
+	{
+		isExact: true,
+		path: '/admin/products',
+		component: React.lazy(() => import('pages/Admins/Products')),
+	},
+	{
+		isExact: true,
+		path: '/admin/users',
+		component: React.lazy(() => import('pages/Admins/Users')),
 	},
 ];
