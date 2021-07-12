@@ -157,5 +157,9 @@
   "needLoginWishList": "Need logged to add wishlist product",
   "addToWishListSuccess": "Add to wish list success!",
   "buy": "Buy",
-  "needLoginToComment": "Need Login to comment"
+  "needLoginToComment": "Need Login to comment",
+  "priceNew": "New Price",
+  "priceOld": "Old Price",
+  "rating": "Rating",
+  "tags": "Tags"
 }

@@ -5,3 +5,9 @@ export const Pages = {
 	PRODUCT: 'Product',
 	DETAIL: 'Detail',
 };
+
+export const AdminPage = {
+	OVERVIEW: '/admin',
+	ADMIN_PRODUCTS: '/admin/products',
+	ADMIN_USERS: '/admin/users',
+};

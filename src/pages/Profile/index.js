@@ -275,6 +275,10 @@ function ProfilePage() {
 									required: true,
 									message: t('required.password'),
 								},
+								{
+									min: 6,
+									message: 'Password to short',
+								},
 							]}
 						>
 							<Input.Password />
