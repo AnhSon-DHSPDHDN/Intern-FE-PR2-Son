@@ -369,7 +369,7 @@ function CartPage() {
 						</div>
 						<div>
 							<strong>{t('total')}: </strong>
-							{order.totalMonney}
+							{order.totalMonney} $
 						</div>
 					</div>
 				</Modal>

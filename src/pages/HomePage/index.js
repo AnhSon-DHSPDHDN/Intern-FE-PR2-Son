@@ -163,6 +163,7 @@ function HomePage() {
 	};
 
 	useEffect(() => {
+		document.title = 'Son Sun*';
 		dispatch(actGetProductsHome());
 	}, [dispatch]);
 
